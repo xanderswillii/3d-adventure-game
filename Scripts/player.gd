@@ -7,12 +7,21 @@ const JUMP_VELOCITY = 4.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var sensitivity = 0.003
-@onready var camera = $FirstPerson
+var onCooldown = false
 
+@onready var camera = $FirstPerson
+@onready var animationPlayer = $AnimationPlayer
+@onready var cooldown = $AttackCooldown
 
 func _ready():
 	$FirstPerson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func attack():
+	if Input.is_action_just_pressed("attack") and onCooldown == false:
+		animationPlayer.play("SwordSwing")
+		onCooldown = true
+		cooldown.start()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -30,6 +39,7 @@ func _switch_view():
 			$FirstPerson.current = true 
 
 func _process(delta):
+	attack()
 	_switch_view()
 	if Input.is_action_just_pressed("escape"):
 		get_tree().quit()
@@ -53,3 +63,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	move_and_slide()
+
+
+func _on_attack_cooldown_timeout() -> void:
+	onCooldown = false
