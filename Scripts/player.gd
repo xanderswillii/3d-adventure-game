@@ -9,11 +9,18 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var sensitivity = 0.003
 var onCooldown = false
 
+var gold = 15
+var hp = 50
+var mawHP = 50
+
+@onready var goldLabel = $HUD/Label
+@onready var hpBar = $HUD/HpBar
 @onready var camera = $FirstPerson
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
 
 func _ready():
+	hpBar.max_value = 50
 	$FirstPerson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -38,7 +45,12 @@ func _switch_view():
 			camera = $FirstPerson
 			$FirstPerson.current = true 
 
+func update_HUD():
+	hpBar.value = hp
+	goldLabel.text = str(gold)
+
 func _process(delta):
+	update_HUD()
 	attack()
 	_switch_view()
 	if Input.is_action_just_pressed("escape"):
