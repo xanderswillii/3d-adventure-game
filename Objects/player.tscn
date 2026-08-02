@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dernmkrseullq" path="res://Model/Sword.glb" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://wyku3bnuerpd" path="res://Sprites/healthbarbacunder.png" id="3_2i4gt"]
 [ext_resource type="Texture2D" uid="uid://bunvjky83nmn6" path="res://Sprites/healthbarover.png" id="4_0ad8t"]
+[ext_resource type="PackedScene" uid="uid://cmjmx60ft084u" path="res://Objects/enemy.tscn" id="5_x20fu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yp4wr"]
 radius = 0.4
@@ -122,5 +123,7 @@ offset_right = 1136.0
 offset_bottom = 646.0
 theme_type_variation = &"HeaderMedium"
 text = "0"
+
+[node name="Enemy" parent="." unique_id=1178262454 instance=ExtResource("5_x20fu")]
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
