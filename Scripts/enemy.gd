@@ -8,7 +8,7 @@ var hp = 20
 var speed = 2
 var accel = 10
 var damage = 10
-var gravity = 9.8
+var gravity = 98
 var target = null
 var value = 15
 
@@ -24,11 +24,10 @@ func _process(delta):
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y -= gravity
+		velocity.y -= gravity * delta
 	
 	if state == States.idle:
-		print("idle")
-		velocity = Vector3.ZERO
+		velocity = Vector3(0, velocity.y, 0)
 		animationPlayer.play("Idle")
 	elif state == States.chase:
 		look_at(Vector3(target.global_position.x, global_position.y,target.global_position.z), Vector3.UP, true)
