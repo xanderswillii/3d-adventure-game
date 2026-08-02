@@ -19,6 +19,9 @@ var mawHP = 50
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
 
+func player():
+	pass
+
 func _ready():
 	hpBar.max_value = 50
 	$FirstPerson.current = true
