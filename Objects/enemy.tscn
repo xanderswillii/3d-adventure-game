@@ -392,6 +392,7 @@ tracks/20/keys = PackedFloat32Array(0, 1, -0.08177033, 0.07376946, -0.4800682, 0
 [sub_resource type="Animation" id="Animation_5uw7e"]
 resource_name = "Idle"
 length = 2.4333334
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -862,8 +863,10 @@ radius = 5.0429688
 height = 0.9638672
 radius = 0.8359375
 
-[node name="Enemy" type="CharacterBody3D" unique_id=1178262454]
+[node name="Enemy" type="CharacterBody3D" unique_id=1178262454 node_paths=PackedStringArray("navAgent", "animationPlayer")]
 script = ExtResource("1_yfe2k")
+navAgent = NodePath("NavigationAgent3D")
+animationPlayer = NodePath("GobelinExport/AnimationPlayer")
 
 [node name="GobelinExport" type="Node3D" parent="." unique_id=1057443876]
 
@@ -1080,6 +1083,7 @@ skeleton = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GobelinExport" unique_id=99289416]
 libraries/ = SubResource("AnimationLibrary_uwhud")
+autoplay = &"Idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=843497448]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017498016, 0.5849564, 0.17979348)
@@ -1096,6 +1100,8 @@ shape = SubResource("CylinderShape3D_yfe2k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attackArea" unique_id=1174613730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38320613, 0)
 shape = SubResource("CylinderShape3D_756aq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=397465876]
 
 [connection signal="body_entered" from="chaseArea" to="." method="_on_chase_area_body_entered"]
 [connection signal="body_exited" from="chaseArea" to="." method="_on_chase_area_body_exited"]
