@@ -4,14 +4,23 @@ extends CharacterBody3D
 enum States {attack, idle, chase, die}
 
 var state = States.idle
-var hp = 15
+var hp = 20
 var speed = 2
 var accel = 10
+var damage = 10
 var gravity = 9.8
 var target = null
+var value = 15
 
 @export var navAgent : NavigationAgent3D
 @export var animationPlayer : AnimationPlayer 
+
+func enemy():
+	pass
+
+func _process(delta):
+	if hp <= 0:
+		state = States.die
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -41,14 +50,20 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+func attack():
+	target.hp -= damage
+	
+func give_loot():
+	target.gold += value
+
 func _on_chase_area_body_entered(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		target = body
 		state = States.chase
 
 
 func _on_chase_area_body_exited(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		target = null
 		state = States.idle
 
@@ -59,5 +74,5 @@ func _on_attack_area_body_entered(body: Node3D) -> void:
 
 
 func _on_attack_area_body_exited(body: Node3D) -> void:
-	if body.has_method("player"):
+	if body.has_method("player") and state != States.die:
 		state = States.chase

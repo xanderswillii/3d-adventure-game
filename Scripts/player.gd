@@ -11,7 +11,9 @@ var onCooldown = false
 
 var gold = 15
 var hp = 50
-var mawHP = 50
+var maxHP = 50
+var damage = 10
+var target = []
 
 @onready var goldLabel = $HUD/Label
 @onready var hpBar = $HUD/HpBar
@@ -26,6 +28,10 @@ func _ready():
 	hpBar.max_value = 50
 	$FirstPerson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func deal_damage():
+	for enemies in target:
+		enemies.hp -= damage
 
 func attack():
 	if Input.is_action_just_pressed("attack") and onCooldown == false:
@@ -82,3 +88,13 @@ func _physics_process(delta):
 
 func _on_attack_cooldown_timeout() -> void:
 	onCooldown = false
+
+
+func _on_attack_zone_body_entered(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.append(body)
+
+ 
+func _on_attack_zone_body_exited(body: Node3D) -> void:
+	if body.has_method("enemy"):
+		target.erase(body)
