@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b5n4s4wtbrneh"]
+
+[ext_resource type="Script" uid="uid://3gjblfeq3mdr" path="res://Scripts/portal.gd" id="1_j8krn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkste"]
+size = Vector3(2.2358398, 2.9684753, 3.696537)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j8krn"]
+size = Vector3(4, 3, 0.5)
+
+[node name="portal" type="Node3D" unique_id=1227863745]
+script = ExtResource("1_j8krn")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1192251922]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1381356247]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.3446217, 1.5258789e-05, -0.6353514)
+shape = SubResource("BoxShape3D_tkste")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1504062477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31396487, 0, 0.32941094)
+mesh = SubResource("BoxMesh_j8krn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

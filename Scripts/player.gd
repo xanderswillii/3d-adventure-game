@@ -25,6 +25,9 @@ func player():
 	pass
 
 func _ready():
+	if Global.node_position != "":
+		self.position = get_parent().find_child(Global.node_position).position
+		self.rotation.y = Global.rotation
 	hpBar.max_value = 50
 	$FirstPerson.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
