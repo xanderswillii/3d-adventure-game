@@ -69,6 +69,7 @@ func _on_chase_area_body_exited(body: Node3D) -> void:
 
 func _on_attack_area_body_entered(body: Node3D) -> void:
 	if body.has_method("player"):
+		print("Player entered ttack aread of enemy at:", global_position)
 		state = States.attack
 
 
