@@ -5,12 +5,12 @@ var has_triggered = false
 var destinations : Dictionary = {
 	forest_1_portal_1 = {
 		scene = "res://Scenes/world.tscn",
-		nameNode = "portal_1",
+		nameNode = "SpawnPoint1",
 		rotationNode = -90
 	},
 	forest_2_portal_1 = {
 		scene = "res://Scenes/world2.tscn",
-		nameNode = "portal_2",
+		nameNode = "SpawnPoint2",
 		rotationNode = -90
 	}
 }

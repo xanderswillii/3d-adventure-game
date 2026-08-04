@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://eyeaa4c818fu"]
+
+[ext_resource type="AudioStream" uid="uid://bkshqsdiop20w" path="res://Audio/Ambiance.wav" id="1_b5t6d"]
+
+[node name="MusicManager" type="AudioStreamPlayer3D" unique_id=147709362]
+stream = ExtResource("1_b5t6d")
+autoplay = true

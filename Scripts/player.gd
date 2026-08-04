@@ -20,6 +20,7 @@ var target = []
 @onready var camera = $FirstPerson
 @onready var animationPlayer = $AnimationPlayer
 @onready var cooldown = $AttackCooldown
+@onready var SwordSound = $SwordSwingSound
 
 func player():
 	pass
@@ -39,6 +40,7 @@ func deal_damage():
 func attack():
 	if Input.is_action_just_pressed("attack") and onCooldown == false:
 		animationPlayer.play("SwordSwing")
+		SwordSound.play()
 		onCooldown = true
 		cooldown.start()
 

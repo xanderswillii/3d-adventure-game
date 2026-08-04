@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dernmkrseullq" path="res://Model/Sword.glb" id="2_3y5cq"]
 [ext_resource type="Texture2D" uid="uid://wyku3bnuerpd" path="res://Sprites/healthbarbacunder.png" id="3_2i4gt"]
 [ext_resource type="Texture2D" uid="uid://bunvjky83nmn6" path="res://Sprites/healthbarover.png" id="4_0ad8t"]
+[ext_resource type="AudioStream" uid="uid://b5r1g7ue13eqe" path="res://Audio/Sword swing.wav" id="5_x20fu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yp4wr"]
 radius = 0.4
@@ -116,7 +117,7 @@ current = true
 transform = Transform3D(0.5, 0, 0, 0, 0.49738893, -0.05103167, 0, 0.05103167, 0.49738893, 0.017301679, -0.16226482, 0.03629303)
 
 [node name="Sword" parent="FirstPerson/SwordPoint" unique_id=1321197029 instance=ExtResource("2_3y5cq")]
-transform = Transform3D(0.99983746, 0.005113946, 0.017234113, 0.01253807, -0.88539493, -0.46467215, 0.0128826555, 0.4648132, -0.8853159, 0.50034225, 0.23742023, -0.7828481)
+transform = Transform3D(0.99983734, 0.005113946, 0.017234113, 0.012538068, -0.88539493, -0.46467215, 0.012882654, 0.4648132, -0.8853159, 0.50034225, 0.23742023, -0.7828481)
 
 [node name="AttackCooldown" type="Timer" parent="." unique_id=1108394270]
 wait_time = 0.8
@@ -144,6 +145,9 @@ text = "0"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attackZone" unique_id=854572003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80311155)
 shape = SubResource("BoxShape3D_0ad8t")
+
+[node name="SwordSwingSound" type="AudioStreamPlayer3D" parent="." unique_id=422178201]
+stream = ExtResource("5_x20fu")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="attackZone" to="." method="_on_attack_zone_body_entered"]
